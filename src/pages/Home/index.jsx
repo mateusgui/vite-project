@@ -8,11 +8,11 @@ import {
   ContainerInputs,
   Input,
   InputLabel,
-  Button,
   Title
 } from './styles'
 
 import PeopleImage from '../../assets/people.svg'
+import Button from '../../components/Button'
 
 function Home() {
   const inputName = useRef()
@@ -25,7 +25,6 @@ function Home() {
       name: inputName.current.value,
       age: parseInt(inputAge.current.value)
     })
-    console.log(data)
   }
 
   return (
