@@ -3,7 +3,6 @@ import api from '../../services/api.js'
 
 import {
   Container,
-  TopBackground,
   Form,
   ContainerInputs,
   Input,
@@ -11,8 +10,8 @@ import {
   Title
 } from './styles'
 
-import PeopleImage from '../../assets/people.svg'
 import Button from '../../components/Button'
+import TopBackground from '../../components/TopBackground'
 
 function Home() {
   const inputName = useRef()
@@ -29,9 +28,7 @@ function Home() {
 
   return (
     <Container>
-      <TopBackground>
-        <img src={PeopleImage} />
-      </TopBackground>
+      <TopBackground />
 
       <Form>
         <Title>Cadastrar Usuário</Title>
