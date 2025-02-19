@@ -46,8 +46,10 @@ function Home() {
             <Input type='email' placeholder='Email do usuário' ref={inputEmail} />
           </div>
         </ContainerInputs>
-        <Button type='button' onClick={registerNewUser}>Cadastrar Usuário</Button>
+        <Button type='button' onClick={registerNewUser} theme='primary'>Cadastrar Usuário</Button>
       </ Form>
+
+      <Button type='button' >Ver lista de Usuários</Button>
     </Container>
   )
 }
