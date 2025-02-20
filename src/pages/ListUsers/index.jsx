@@ -1,12 +1,23 @@
 import Button from '../../components/Button'
 import TopBackground from '../../components/TopBackground'
+import Trash from '../../assets/trash.svg'
+
 import { useNavigate } from 'react-router-dom'
 import api from '../../services/api.js'
 import { useEffect, useState } from 'react'
 
+import {
+    Container,
+    Title,
+    ContainerUsers,
+    CardUsers,
+    TrashIcon,
+    AvatarUser
+} from './styles'
+
 function ListUsers() {
 
-    const[users,setUsers] = useState([])
+    const [users, setUsers] = useState([])
 
     //Hook com uma função que carrega todos os usuários assim que a página é chamada
     useEffect(() => {
@@ -20,20 +31,26 @@ function ListUsers() {
     const navigate = useNavigate()
 
     return (
-        <div>
+        <Container>
             <TopBackground />
-            <h1>Listagem de Usuários</h1>
+            <Title>Lista de usuários</Title>
 
-        {users.map( (user) => (
-            <div key={user.id}>
-                <p>{user.name}</p>
-                <p>{user.age}</p>
-                <p>{user.email}</p>
-            </div>
-        ))}
+            <ContainerUsers>
+                {users.map((user) => (
+                    <CardUsers key={user.id}>
+                        <AvatarUser src={`https://avatar.iran.liara.run/public?username=${user.id}`} />
+                        <div>
+                            <h3>{user.name}</h3>
+                            <p>{user.age}</p>
+                            <p>{user.email}</p>
+                        </div>
+                        <TrashIcon src={Trash} alt='icone-lixo'/>
+                    </CardUsers>
+                ))}
+            </ContainerUsers>
 
-            <Button onClick={() => navigate('/')} >Voltar</Button> 
-        </div>
+            <Button type="button" onClick={() => navigate('/')} >Voltar</Button>
+        </Container>
     )
 }
 
