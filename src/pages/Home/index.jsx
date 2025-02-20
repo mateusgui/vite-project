@@ -15,18 +15,22 @@ import Button from '../../components/Button'
 import TopBackground from '../../components/TopBackground'
 
 function Home() {
+
+  // Criando referências para os campos de input
   const inputName = useRef()
   const inputAge = useRef()
   const inputEmail = useRef()
 
   const navigate = useNavigate()
 
-  async function registerNewUser(){
+  //Função para registro dos novos usuários
+  async function registerNewUser() {
     const data = await api.post('/usuarios', {
       email: inputEmail.current.value,
       name: inputName.current.value,
       age: parseInt(inputAge.current.value)
     })
+    console.log(data.data)
   }
 
   return (
@@ -35,7 +39,7 @@ function Home() {
 
       <Form>
         <Title>Cadastrar Usuário</Title>
-        <div style={{width: '100%'}}>
+        <div style={{ width: '100%' }}>
           <InputLabel>Nome<span> *</span></InputLabel>
           <Input type='text' placeholder='Nome do usuário' ref={inputName} />
         </div>
