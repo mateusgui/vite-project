@@ -17,6 +17,8 @@ import {
 
 function ListUsers() {
 
+    const navigate = useNavigate()
+
     const [users, setUsers] = useState([])
 
     //Hook com uma função que carrega todos os usuários assim que a página é chamada
@@ -28,12 +30,19 @@ function ListUsers() {
         getUsers()
     }, [])
 
-    const navigate = useNavigate()
+    async function deleteUsers(id) {
+        await api.delete(`/usuarios/${id}`)
+
+        //Alteração de estado local para atualizar a lista de usuários assim que for deletado
+        const updatedUsers = users.filter( user => user.id !== id)
+        setUsers(updatedUsers)
+    }
 
     return (
         <Container>
             <TopBackground />
             <Title>Lista de usuários</Title>
+            <Button type="button" onClick={() => navigate('/')} >Voltar</Button>
 
             <ContainerUsers>
                 {users.map((user) => (
@@ -44,7 +53,7 @@ function ListUsers() {
                             <p>{user.age}</p>
                             <p>{user.email}</p>
                         </div>
-                        <TrashIcon src={Trash} alt='icone-lixo'/>
+                        <TrashIcon src={Trash} alt='icone-lixo' onClick={() => deleteUsers(user.id)}/>
                     </CardUsers>
                 ))}
             </ContainerUsers>
